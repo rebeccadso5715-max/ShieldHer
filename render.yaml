@@ -11,6 +11,8 @@ services:
         fromDatabase:
           name: shieldher-db
           property: connectionString
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQLDialect
       - key: SHIELDHER_FRONTEND_ORIGIN
         value: https://shieldher-frontend.onrender.com
 

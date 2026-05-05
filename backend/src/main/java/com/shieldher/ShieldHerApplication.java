@@ -28,11 +28,13 @@ public class ShieldHerApplication {
     String[] credentials = userInfo.split(":", 2);
     String username = credentials.length > 0 ? decode(credentials[0]) : "";
     String password = credentials.length > 1 ? decode(credentials[1]) : "";
-    String jdbcUrl = "jdbc:postgresql://" + uri.getHost() + ":" + uri.getPort() + uri.getPath();
+    String port = uri.getPort() > 0 ? ":" + uri.getPort() : "";
+    String jdbcUrl = "jdbc:postgresql://" + uri.getHost() + port + uri.getPath();
 
     System.setProperty("spring.datasource.url", jdbcUrl);
     System.setProperty("spring.datasource.username", username);
     System.setProperty("spring.datasource.password", password);
+    System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.PostgreSQLDialect");
   }
 
   private static String decode(String value) {
